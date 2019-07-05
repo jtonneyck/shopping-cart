@@ -60,37 +60,22 @@ function createItemNode(dataType, itemData){
 
 function createNameNode(name) {
   let paragraph = document.createElement("p")
-  paragraph.innerHTML = name
-
-  let pContainer = document.createElement("div")
-  pContainer.classList.add("name")
-
-  pContainer.appendChild(paragraph)
-
-  return pContainer
-} 
-
-function createNewItemRow(itemName, itemUnitPrice){
-
-  let row = document.createElement("div")
-  row.classList.add("row")
-
-  let input = createQuantityInput()
-  row.appendChild(input)
-
-  return row
-}
+adsfg
+\vzdsc., mxcv
 
 function createNewItem(){
 
 }
 
-window.onload = function(){
+window.onload = function(){SVGDefsElement./mzdsv/m.
   var calculatePriceButton = document.getElementById('calc-prices-button');
   // var createItemButton = document.getElementById('new-item-create');
   var deleteButtons = document.getElementsByClassName('btn-delete');
 
-  calculatePriceButton.onclick = getTotalPrice;
+  calculatePriceButton.onczxv\ds
+  sd
+  fsd
+  fsadfmcvxclick = getTotalPrice;
   // createItemButton.onclick = createNewItem;
 
   for(var i = 0; i<deleteButtons.length ; i++){
