@@ -39,3 +39,14 @@ input {
 .quantity {
   margin: 0 5px;
 }
+
+.row, btn-row {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.row > div {
+  margin: 5%;
+}

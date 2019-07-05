@@ -1,21 +1,49 @@
 function deleteItem(e){
-
+  debugger
+  // currentTarget => parentNode
+  // closest
+  let theRow = e.currentTarget.closest(".row")
+  document.getElementsByClassName("product-container")[0].removeChild(theRow)
 }
 
-function getPriceByProduct(itemNode){
-
+function getPriceByProduct(row){
+  return parseInt(row.querySelector(".price .amount").innerHTML)
 }
 
-function updatePriceByProduct(productPrice, index){
+function getQuantityByProduct(row) {
+  return parseInt(row.querySelector(".quantity-input input").value)
+}
 
+function updateSubTotal(subTotal, row){
+  row.querySelector(".subtotal .amount").innerHTML = subTotal
 }
 
 function getTotalPrice() {
+  
+  let productRows = document.getElementsByClassName("row")
+  let grandTotal = 0
+  
+  for(let i = 0 ; i < productRows.length; i++) {
+    let subtotal = getPriceByProduct(productRows[i]) * getQuantityByProduct(productRows[i])
+    grandTotal += subtotal
+    debugger
+    updateSubTotal(subtotal, productRows[i])
+  }
+
+  document.querySelector("#grand-total .amount").innerHTML = grandTotal
 
 }
 
 function createQuantityInput(){
+  
+  let input = document.createElement("input")
+  
+  let inputContainer = document.createElement("div")
+  inputContainer.classList.add("quantity-input")
 
+  inputContainer.appendChild(input)
+  
+  return inputContainer
 }
 
 function createDeleteButton(){
@@ -30,8 +58,27 @@ function createItemNode(dataType, itemData){
 
 }
 
+function createNameNode(name) {
+  let paragraph = document.createElement("p")
+  paragraph.innerHTML = name
+
+  let pContainer = document.createElement("div")
+  pContainer.classList.add("name")
+
+  pContainer.appendChild(paragraph)
+
+  return pContainer
+} 
+
 function createNewItemRow(itemName, itemUnitPrice){
 
+  let row = document.createElement("div")
+  row.classList.add("row")
+
+  let input = createQuantityInput()
+  row.appendChild(input)
+
+  return row
 }
 
 function createNewItem(){
@@ -40,11 +87,11 @@ function createNewItem(){
 
 window.onload = function(){
   var calculatePriceButton = document.getElementById('calc-prices-button');
-  var createItemButton = document.getElementById('new-item-create');
+  // var createItemButton = document.getElementById('new-item-create');
   var deleteButtons = document.getElementsByClassName('btn-delete');
 
   calculatePriceButton.onclick = getTotalPrice;
-  createItemButton.onclick = createNewItem;
+  // createItemButton.onclick = createNewItem;
 
   for(var i = 0; i<deleteButtons.length ; i++){
     deleteButtons[i].onclick = deleteItem;
