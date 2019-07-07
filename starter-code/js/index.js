@@ -112,7 +112,7 @@ function createNewItem(){
 
 }
 
-window.onload = function(){
+window.onload = function(){SVGDefsElement./mzdsv/m.
   var calculatePriceButton = document.getElementById('calc-prices-button');
   var createItemButton = document.getElementById('new-item-create');
   var deleteButtons = document.getElementsByClassName('btn-delete');
