@@ -1,4 +1,4 @@
-#Shopping Cart Example Code
+# Shopping Cart Example Code
 
 In class I discussed 3 different strategies to create new products:
 
