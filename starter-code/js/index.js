@@ -1,5 +1,4 @@
 function deleteItem(e){
-  debugger
   // currentTarget => parentNode
   // closest
   let theRow = e.currentTarget.closest(".row")
@@ -26,7 +25,7 @@ function getTotalPrice() {
   for(let i = 0 ; i < productRows.length; i++) {
     let subtotal = getPriceByProduct(productRows[i]) * getQuantityByProduct(productRows[i])
     grandTotal += subtotal
-    debugger
+    
     updateSubTotal(subtotal, productRows[i])
   }
 
@@ -70,28 +69,56 @@ function createNameNode(name) {
   return pContainer
 } 
 
+
+// let row = {
+//   boilerplate:   document.getElementsByClassName("row")[0].cloneNode(true)
+//   createNewItemRow : function(itemName, itemUnitPrice){
+  
+//     this.boilerplate.querySelector(".name p").innerHTML = itemName
+//     this.boilerplate.querySelector(".price .amount").innerHTML itemUnitPrice
+  
+//     document.getElementsByClassName("product-container")[0].appendChild(newRow)
+//   }
+// }
+
+
+
 function createNewItemRow(itemName, itemUnitPrice){
 
-  let row = document.createElement("div")
-  row.classList.add("row")
+  let toBeCloned = document.getElementsByClassName("row")[0]
+  let newRow = toBeCloned.cloneNode(true)
 
-  let input = createQuantityInput()
-  row.appendChild(input)
+  newRow.querySelector(".name p").innerHTML = itemName
+  newRow.querySelector(".price .amount").innerHTML = itemUnitPrice
 
-  return row
+  document.getElementsByClassName("product-container")[0].appendChild(newRow)
+
+  newRow.getElementsByClassName("btn-delete")[0].addEventListener("click", deleteItem)
 }
 
 function createNewItem(){
+  let name = document.getElementById("create-name").value
+  let price = document.getElementById("create-price").value
+
+  if(typeof name !== "string" || name.length === 0) {
+    alert("Give me a proper name!")
+    return
+  }
+  if(typeof isNaN(parseInt(price))) {
+    alert("The price should be a number!")
+    return
+  }
+  createNewItemRow(name, price)
 
 }
 
 window.onload = function(){
   var calculatePriceButton = document.getElementById('calc-prices-button');
-  // var createItemButton = document.getElementById('new-item-create');
+  var createItemButton = document.getElementById('new-item-create');
   var deleteButtons = document.getElementsByClassName('btn-delete');
 
   calculatePriceButton.onclick = getTotalPrice;
-  // createItemButton.onclick = createNewItem;
+  createItemButton.onclick = createNewItem;
 
   for(var i = 0; i<deleteButtons.length ; i++){
     deleteButtons[i].onclick = deleteItem;
